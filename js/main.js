@@ -12,7 +12,7 @@ class App {
         }
 ]
     constructor() {
-        this.app = new Api();
+      
         this.switcher = new Switcher(this, this.data);
 
     }
@@ -53,8 +53,12 @@ class Yubtub {
     constructor(app, data) {
        
         this.app = app;
+
         this.renderer = new Renderer();
         this.aside = new Aside(this, data);
+        this.header = new Header();
+        this.main = new Main(this);
+
        
     }
 }
@@ -74,8 +78,47 @@ class Aside {
         
         this.yubtub = yubtub
         this.htmlElement = document.createElement("aside");
+       
         this.yubtub.renderer.render("body", this.htmlElement);
         this.nextvideo = new NextVideo(this, data);
+    }
+}
+
+class Header{
+    constructor() {
+        
+    }
+}
+
+class Main{
+    yubtub;
+    constructor(yubtub) {
+        this.yubtub = yubtub;
+        
+        this.comments = new Comments(this);
+    }
+}
+
+class video{
+    constructor() {
+        
+    }
+}
+
+class Comments{
+    main
+    constructor(main) {
+        this.main = main;
+
+        this.comment = new Comment(this)
+    }
+}
+
+class Comment{
+    comments
+    constructor(comments) {
+        this.comments = comments
+        
     }
 }
 
@@ -88,6 +131,7 @@ class NextVideo {
         this.data = data;
         this.aside = aside;
         this.htmlElement = document.createElement("video");
+       
         this.htmlElement.src = "./video/" + data.video;
         this.aside.yubtub.renderer.render("aside", this.htmlElement);
 
@@ -98,6 +142,8 @@ class NextVideo {
         this.aside.yubtub.app.switcher.switch(this.data.link);
     }
 }
+
+
 
 const app = new App();
 console.log(app);

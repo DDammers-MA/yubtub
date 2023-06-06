@@ -1,0 +1,45 @@
+.body{
+    height: 90%;
+    background: red;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    
+
+    &__leftSide{
+background: blue;
+display: flex;
+align-items: center;
+flex-direction: column;
+    }
+
+    &__video{
+        height: 35rem;
+        width: 55rem;
+        
+    }
+
+    &__onder{
+
+      width: 55rem;
+        height: 7rem;
+        background: green;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        
+    }
+
+    &__onderItems{
+        list-style: none;
+
+        &--circle{
+            background: white;
+            height: 7rem;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+        }
+
+ 
+    }
+ 
+}
