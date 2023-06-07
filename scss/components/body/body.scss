@@ -1,45 +1,110 @@
-.body{
+.body {
     height: 90%;
-    background: red;
     display: grid;
-    grid-template-columns: 60% 40%;
-    
+    grid-template-columns: 70% 30%;
+    background: #0E0E10;
 
-    &__leftSide{
-background: blue;
-display: flex;
-align-items: center;
-flex-direction: column;
-    }
 
-    &__video{
-        height: 35rem;
-        width: 55rem;
-        
-    }
-
-    &__onder{
-
-      width: 55rem;
-        height: 7rem;
-        background: green;
+    &__leftSide {
+       
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        flex-direction: column;
+       
+    padding: 2rem;
+        overflow-y: scroll;
         
     }
 
-    &__onderItems{
+    &__videoMain {
+       
+        height: 35rem;
+        width: 55rem;
+
+    }
+
+    &__videoOwner {
+
+        width: 55rem;
+        height: 7rem;
+       color: #eee;
+       border: 0.2rem solid #A970FF;
+       background: #A970FF;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        border-radius: 0 0 1rem 1rem;
+    }
+
+ 
+
+    &__div {
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        &:hover{
+            cursor: pointer;
+          }
+
+
+        &--1 {
+            justify-content: start;
+            gap: 1rem;
+
+
+        }
+
+        &--2 {
+            justify-content: end;
+            gap: 1rem;
+         
+       
+
+        }
+
+    }
+
+
+    &__VideoItems {
         list-style: none;
 
-        &--circle{
+        &--circle {
+
             background: white;
-            height: 7rem;
+            height: 6rem;
             aspect-ratio: 1/1;
             border-radius: 50%;
         }
 
- 
+
     }
- 
+
+    &__righSide{
+        height: 100%;
+        width: 100%;
+    }
+
+    &__rightSidelist{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        list-style: none;
+       
+    }
+
+    &__rightSideItems{
+        padding: 2.3rem;
+        height: 20rem;
+        width: 35rem;
+     
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__RightSideVido{
+        height: 100%;
+    }
 }
