@@ -13,9 +13,14 @@ body {
   font-size: 2rem;
 }
 
-header {
+.header {
   height: 10%;
   background: #A970FF;
+}
+
+.video-container {
+  position: relative;
+  display: inline-block;
 }
 
 .body {
@@ -33,7 +38,22 @@ header {
 }
 .body__videoMain {
   height: 35rem;
-  width: 55rem;
+  border-radius: 0.5rem;
+}
+.body__videoOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .body__videoOwner {
   width: 55rem;
@@ -82,9 +102,9 @@ header {
   display: flex;
   justify-content: center;
   list-style: none;
+  padding: 2rem;
 }
 .body__rightSideItems {
-  padding: 2.3rem;
   height: 20rem;
   width: 35rem;
   display: flex;
