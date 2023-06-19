@@ -154,7 +154,19 @@ class Aside {
     this.htmlElement = document.createElement("aside");
     this.htmlElement.classList.add("body__righSide");
 
+    this.asideUlElement = document.createElement("ul");
+    this.asideUlElement.classList.add("body__rightSidelist");
+
+    this.asideItemElement = document.createElement("li")
+
+    this.htmlElement.appendChild(this.asideUlElement)
+    this.asideUlElement.appendChild(this.asideItemElement);
+
+
+    this.yubtub.renderer.render("main", this.htmlElement);
     this.nextvideo = new NextVideo(this, this.data);
+
+
   }
 }
 
@@ -174,7 +186,7 @@ class Video {
     this.htmlElement = document.createElement("video");
     this.htmlElement.classList.add("body__videoMain");
     this.htmlElement.src = "./video/" + data["video"];
-    this.htmlElement.autoplay =true;
+    this.htmlElement.autoplay = true;
 
     
   }
