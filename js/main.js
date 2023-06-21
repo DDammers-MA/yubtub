@@ -40,7 +40,9 @@ class Switcher {
 
   switch(link) {
     this.cleaner.clean("body");
+ 
     this.yubtub = new Yubtub(this.app, this.data[link]);
+    
   }
 }
 
@@ -138,6 +140,7 @@ class Main {
     this.comments = new Comments(this);
     this.video = new Video(data);
     this.videoContainerElement.appendChild(this.video.htmlElement);
+    this.articleElement.appendChild(this.comments.htmlElement);
 
     this.yubtub.renderer.render("body", this.htmlElement);
   }
@@ -158,13 +161,18 @@ class Aside {
     this.asideUlElement.classList.add("body__rightSidelist");
 
     this.asideItemElement = document.createElement("li")
+    this.asideItemElement.classList.add("body__rightSideItems");
 
     this.htmlElement.appendChild(this.asideUlElement)
     this.asideUlElement.appendChild(this.asideItemElement);
 
+   
 
     this.yubtub.renderer.render("main", this.htmlElement);
     this.nextvideo = new NextVideo(this, this.data);
+
+    this.asideItemElement.appendChild(this.nextvideo.htmlElement);
+  
 
 
   }
@@ -186,7 +194,7 @@ class Video {
     this.htmlElement = document.createElement("video");
     this.htmlElement.classList.add("body__videoMain");
     this.htmlElement.src = "./video/" + data["video"];
-    this.htmlElement.autoplay = true;
+    this.htmlElement.controls = true;
 
     
   }
@@ -196,7 +204,19 @@ class Comments {
   main;
   constructor(main) {
     this.main = main;
+    this.htmlElement = document.createElement("section");
+    this.htmlElement.classList.add("comments");
+    this.commentsList = document.createElement("ul");
+    this.commentsList.classList.add("comments__list");
+    this.htmlElement.appendChild(this.commentsList);
+
     this.comment = new Comment(this);
+    this.commentsList.appendChild(this.comment.htmlElement);
+    this.textArea = document.createElement("textarea");
+    this.textArea.classList.add("comments__textArea");
+    this.textArea.placeholder = "Plaats hier je reactie";
+    this.htmlElement.appendChild(this.textArea);
+
   }
 }
 
@@ -204,6 +224,26 @@ class Comment {
   comments;
   constructor(comments) {
     this.comments = comments;
+    this.htmlElement = document.createElement("li");
+    this.htmlElement.classList.add("comments__list--item");
+    this.commentDiv = document.createElement("div");
+    this.commentDiv.classList.add("comments__div");
+
+    this.profilePicture = document.createElement("img");
+    this.profilePicture.classList.add("body__VideoItems--circle");
+    this.profilePicture.src = "https://picsum.photos/81";
+    this.profilePicture.alt = "Profile picture";
+    this.commentDiv.appendChild(this.profilePicture);
+
+    this.username = document.createElement("h4");
+    this.username.textContent = "daniel";
+    this.commentDiv.appendChild(this.username);
+
+    this.htmlElement.appendChild(this.commentDiv);
+
+    this.commentText = document.createElement("p");
+    this.commentText.textContent = "super gaaf dit is de best video ooit";
+    this.htmlElement.appendChild(this.commentText);
   }
 }
 
@@ -217,16 +257,19 @@ class NextVideo {
     this.htmlElement = document.createElement("video");
     this.htmlElement.classList.add("body__RightSideVido");
 
-    this.htmlElement.src = "./video/" + this.data.link;
-    this.aside.yubtub.renderer.render("aside", this.htmlElement);
+    this.htmlElement.src = "./video/" + this.data["video"];
+
 
     this.htmlElement.onclick = this.videoClicked;
+    
+    this.aside.yubtub.renderer.render("aside", this.htmlElement);
   }
 
   videoClicked = () => {
     this.aside.yubtub.app.switcher.switch(this.data.link);
   };
 }
+
 
 const app = new App();
 console.log(app);

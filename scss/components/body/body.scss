@@ -22,6 +22,7 @@
     &__videoMain {
         height: 35rem;
         border-radius: 0.5rem;
+      
     }
 
     &__videoOverlay {
@@ -38,6 +39,8 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        
+
     }
     
 
@@ -53,6 +56,9 @@
         justify-content: flex-start;
         border-radius: 0 0 1rem 1rem;
     }
+
+ 
+
 
  
 
@@ -74,8 +80,6 @@
         &--2 {
             justify-content: end;
             gap: 1rem;
-         
-       
 
         }
 
@@ -123,5 +127,50 @@
 
     &__RightSideVido{
         height: 100%;
+        width: 100%;
+    }
+
+
+}
+
+.comments{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    &__list{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        &--item{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 10rem;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border: 0.2rem solid #A970FF;
+            color: #eee;
+            box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &__div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    &__textArea{
+        height: 12.1rem;
+        border: none;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        width: 62.3rem;
+        resize: none;
+        background: white;
+        box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.1);
     }
 }
