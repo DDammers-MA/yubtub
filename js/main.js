@@ -210,19 +210,30 @@ class Comments {
     this.commentsList.classList.add("comments__list");
     this.htmlElement.appendChild(this.commentsList);
 
-    this.comment = new Comment(this);
-    this.commentsList.appendChild(this.comment.htmlElement);
     this.textArea = document.createElement("textarea");
     this.textArea.classList.add("comments__textArea");
     this.textArea.placeholder = "Plaats hier je reactie";
+    this.textArea.addEventListener("keydown", this.handleKeyDown); // Event listener toevoegen
     this.htmlElement.appendChild(this.textArea);
-
   }
+
+  handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      // Controleer of de Enter-toets is ingedrukt
+      event.preventDefault();
+      this.commentText = this.textArea.value;
+      this.textArea.value = ""; // Leegmaken van de textarea
+
+      // Maak een nieuw Comment-object aan en voeg het toe aan de Comments-lijst
+      this.comment = new Comment(this, this.commentText);
+      this.commentsList.appendChild(this.comment.htmlElement);
+    }
+  };
 }
 
 class Comment {
   comments;
-  constructor(comments) {
+  constructor(comments, text) {
     this.comments = comments;
     this.htmlElement = document.createElement("li");
     this.htmlElement.classList.add("comments__list--item");
@@ -242,10 +253,11 @@ class Comment {
     this.htmlElement.appendChild(this.commentDiv);
 
     this.commentText = document.createElement("p");
-    this.commentText.textContent = "super gaaf dit is de best video ooit";
+    this.commentText.textContent = text; // Gebruik de meegegeven tekst voor de commentaar
     this.htmlElement.appendChild(this.commentText);
   }
 }
+
 
 class NextVideo {
   aside;
