@@ -213,18 +213,17 @@ class Comments {
     this.textArea = document.createElement("textarea");
     this.textArea.classList.add("comments__textArea");
     this.textArea.placeholder = "Plaats hier je reactie";
-    this.textArea.addEventListener("keydown", this.handleKeyDown); // Event listener toevoegen
+    this.textArea.addEventListener("keydown", this.handleKeyDown); 
     this.htmlElement.appendChild(this.textArea);
   }
 
   handleKeyDown = (event) => {
     if (event.keyCode === 13) {
-      // Controleer of de Enter-toets is ingedrukt
+
       event.preventDefault();
       this.commentText = this.textArea.value;
-      this.textArea.value = ""; // Leegmaken van de textarea
+      this.textArea.value = ""; 
 
-      // Maak een nieuw Comment-object aan en voeg het toe aan de Comments-lijst
       this.comment = new Comment(this, this.commentText);
       this.commentsList.appendChild(this.comment.htmlElement);
     }
@@ -253,7 +252,7 @@ class Comment {
     this.htmlElement.appendChild(this.commentDiv);
 
     this.commentText = document.createElement("p");
-    this.commentText.textContent = text; // Gebruik de meegegeven tekst voor de commentaar
+    this.commentText.textContent = text; 
     this.htmlElement.appendChild(this.commentText);
   }
 }
