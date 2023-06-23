@@ -34,16 +34,15 @@ class Switcher {
   constructor(app, data) {
     this.app = app;
     this.data = data;
-    this.yubtub = new Yubtub(app, this.data[this.default]);
+    this.yubtub = new Yubtub(app, this.data[0]);
     this.cleaner = new Cleaner();
   }
 
-  switch(link) {
-    this.cleaner.clean("body");
- 
-    this.yubtub = new Yubtub(this.app, this.data[link]);
-    
-  }
+switch(link) {
+  this.cleaner.clean("body");
+  this.yubtub = new Yubtub(this.app, this.data[link]);
+}
+
 }
 
 class Cleaner {
@@ -137,7 +136,7 @@ class Main {
 
 
 
-    this.comments = new Comments(this);
+    this.comments = new Comments(this, data);
     this.video = new Video(data);
     this.videoContainerElement.appendChild(this.video.htmlElement);
     this.articleElement.appendChild(this.comments.htmlElement);
@@ -169,7 +168,7 @@ class Aside {
    
 
     this.yubtub.renderer.render("main", this.htmlElement);
-    this.nextvideo = new NextVideo(this, this.data);
+    this.nextvideo = new NextVideo(this, data);
 
     this.asideItemElement.appendChild(this.nextvideo.htmlElement);
   
@@ -202,8 +201,10 @@ class Video {
 
 class Comments {
   main;
-  constructor(main) {
+  constructor(main, data) {
     this.main = main;
+    this.data = data;
+  
     this.htmlElement = document.createElement("section");
     this.htmlElement.classList.add("comments");
     this.commentsList = document.createElement("ul");
@@ -211,10 +212,17 @@ class Comments {
     this.htmlElement.appendChild(this.commentsList);
 
     this.textArea = document.createElement("textarea");
+    this.textArea.setAttribute("maxlength", "30")
     this.textArea.classList.add("comments__textArea");
     this.textArea.placeholder = "Plaats hier je reactie";
     this.textArea.addEventListener("keydown", this.handleKeyDown); 
     this.htmlElement.appendChild(this.textArea);
+
+    this.defaultComment = new Comment(this, data.comment, data.naam, data.profilePic);
+
+    this.commentsList.appendChild(this.defaultComment.htmlElement);
+
+
   }
 
   handleKeyDown = (event) => {
@@ -224,15 +232,21 @@ class Comments {
       this.commentText = this.textArea.value;
       this.textArea.value = ""; 
 
-      this.comment = new Comment(this, this.commentText);
-      this.commentsList.appendChild(this.comment.htmlElement);
+      if (this.commentText !== "") {
+        this.comment = new Comment(this, this.commentText, "daniel", "https://picsum.photos/34", this.data);
+        this.commentsList.appendChild(this.comment.htmlElement);
+      }
+    
     }
   };
+
+
 }
 
 class Comment {
   comments;
-  constructor(comments, text) {
+  constructor(comments, text, naam,profilePic , data) {
+    this.data = data;
     this.comments = comments;
     this.htmlElement = document.createElement("li");
     this.htmlElement.classList.add("comments__list--item");
@@ -241,12 +255,12 @@ class Comment {
 
     this.profilePicture = document.createElement("img");
     this.profilePicture.classList.add("body__VideoItems--circle");
-    this.profilePicture.src = "https://picsum.photos/81";
+    this.profilePicture.src = profilePic;
     this.profilePicture.alt = "Profile picture";
     this.commentDiv.appendChild(this.profilePicture);
 
     this.username = document.createElement("h4");
-    this.username.textContent = "daniel";
+    this.username.textContent = naam;
     this.commentDiv.appendChild(this.username);
 
     this.htmlElement.appendChild(this.commentDiv);
@@ -265,6 +279,8 @@ class NextVideo {
   constructor(aside, data) {
     this.data = data;
     this.aside = aside;
+    
+
     this.htmlElement = document.createElement("video");
     this.htmlElement.classList.add("body__RightSideVido");
 

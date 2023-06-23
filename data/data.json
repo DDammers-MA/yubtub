@@ -1,15 +1,21 @@
 {
-    "data":[
-        {
-            "id": 0,
-            "video": "video--1.mp4",
-            "link": 1
-
-        },
-        {
-            "id": 1,
-            "video": "video--2.mp4",
-            "link": 0
-        }
+    "data": [
+      {
+        "id": 0,
+        "video": "video--1.mp4",
+        "link": 1,
+        "naam": "nick",
+        "comment": "waar is de actie? saai zeg.",
+        "profilePic": "https://picsum.photos/75"
+      },
+      {
+        "id": 1,
+        "video": "video--2.mp4",
+        "link": 0,
+        "naam": "frits",
+        "comment": "wow super vet ",
+        "profilePic": "https://picsum.photos/81"
+      }
     ]
-}
+  }
+  
