@@ -284,7 +284,7 @@ class NextVideo {
     this.htmlElement = document.createElement("video");
     this.htmlElement.classList.add("body__RightSideVido");
 
-    this.htmlElement.src = "./video/" + this.data["video"];
+    this.htmlElement.src = "./video/video--" + data.link + ".mp4";
 
 
     this.htmlElement.onclick = this.videoClicked;
